@@ -517,7 +517,7 @@ MonoBehaviour:
     m_Bits: 0
   damage: 1
   attackCooldown: 0.35
-  animator: {fileID: 0}
+  animator: {fileID: 507196877}
 --- !u!114 &507196873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,7 +776,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 71122086eed812945a0c7d2bbca2e23c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9199,7 +9199,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 71122086eed812945a0c7d2bbca2e23c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9468,8 +9468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trauko
   jumpForce: 4
-  minIdleDelay: 40
-  maxIdleDelay: 80
+  minIdleDelay: 10
+  maxIdleDelay: 20
   proyectilPrefab: {fileID: 6091607559058924830, guid: ad4624da49c59244f9c93edc68451c0f, type: 3}
   firePoint: {fileID: 776041850}
   animator: {fileID: 2121190030}
