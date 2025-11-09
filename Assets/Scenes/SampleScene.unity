@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 12886016}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9162,7 +9162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 776041850}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9516,7 +9516,7 @@ GameObject:
   - component: {fileID: 2121190028}
   - component: {fileID: 2121190033}
   - component: {fileID: 2121190034}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Jefe_Trauko
   m_TagString: Untagged
   m_Icon: {fileID: 0}
