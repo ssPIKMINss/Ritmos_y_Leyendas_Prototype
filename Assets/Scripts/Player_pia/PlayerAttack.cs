@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
         var hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (var h in hits)
         {
-            h.GetComponent<EnemyHealth>()?.TakeDamage(damage);
+            h.GetComponent<EnemyHealth_Minion>()?.TakeDamage(damage);
         }
     }
 
