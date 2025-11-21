@@ -1,6 +1,4 @@
 using UnityEngine;
-
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
@@ -9,7 +7,12 @@ public class MenuController : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("Cargando juego...");
-        // Cambia "GameScene" por el nombre de tu escena de juego
+        StartCoroutine(LoadGameWithDelay());
+    }
+
+    private System.Collections.IEnumerator LoadGameWithDelay()
+    {
+        yield return new WaitForSeconds(0.5f); // Ajusta el delay si quieres
         SceneManager.LoadScene("Level_01");
     }
 
@@ -17,7 +20,13 @@ public class MenuController : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Saliendo del juego");
-        // No cerrará en editor, pero sí en build final
+        StartCoroutine(QuitWithDelay());
+    }
+
+    private System.Collections.IEnumerator QuitWithDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
         Application.Quit();
     }
 }
+
