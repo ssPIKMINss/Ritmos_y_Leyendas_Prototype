@@ -6,14 +6,22 @@ public class MinionRhythm : MonoBehaviour
     public int health = 1;
     public int damageToPlayer = 1;
 
+    [Header("Movement")]
+    public float moveSpeed = 1.5f; // mov por beat
+
     [Header("Detection")]
-    public float attackRange = 1f;
+    public float attackRange = 0.5f;
+    public Transform attackPoint;
+    public LayerMask playerLayer;
     public Transform player;
 
-    [Header("Movement")]
-    public float moveSpeed = 3f;
-
+    private Rigidbody2D rb;
     private bool isDead = false;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void OnEnable()
     {
@@ -31,29 +39,34 @@ public class MinionRhythm : MonoBehaviour
 
         float dist = Vector2.Distance(transform.position, player.position);
 
-        // Attack if close enough
         if (dist <= attackRange)
-        {
             Attack();
-        }
         else
-        {
             MoveTowardPlayer();
-        }
     }
 
     void MoveTowardPlayer()
     {
-        Vector2 dir = (player.position - transform.position).normalized;
-        transform.position += (Vector3)(dir * moveSpeed);
+        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 targetPos = (Vector2)transform.position + direction * moveSpeed;
+
+        rb.MovePosition(targetPos);  // 🟢 FÍSICAS CORRECTAS
     }
 
     void Attack()
     {
-        // Aquí llamas al script del jugador
-        PlayerHealth ph = player.GetComponent<PlayerHealth>();
-        if (ph != null)
-            ph.TakeDamage(damageToPlayer);
+        Collider2D hit = Physics2D.OverlapCircle(
+            attackPoint.position,
+            attackRange,
+            playerLayer
+        );
+
+        if (hit != null)
+        {
+            PlayerHealth ph = hit.GetComponent<PlayerHealth>();
+            if (ph != null)
+                ph.TakeDamage(damageToPlayer);
+        }
     }
 
     public void TakeDamage(int dmg)
@@ -68,7 +81,12 @@ public class MinionRhythm : MonoBehaviour
     void Die()
     {
         isDead = true;
-        // animación opcional
         Destroy(gameObject, 0.1f);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint != null)
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
