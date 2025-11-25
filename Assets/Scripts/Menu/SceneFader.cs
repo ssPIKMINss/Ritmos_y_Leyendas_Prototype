@@ -10,7 +10,7 @@ public class SceneFader : MonoBehaviour
         if (fadeSound != null)
             fadeSound.Play();
 
-        animator.SetTrigger("FadeOut"); // ← IMPORTANTÍSIMO
+        animator.SetTrigger("FadeOut");
     }
 }
 

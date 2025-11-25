@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae520734c9b125d478895715a9b505fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  anim: {fileID: 394643183}
 --- !u!1 &394643181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae520734c9b125d478895715a9b505fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuController
+  anim: {fileID: 0}
 --- !u!4 &1062088701
 Transform:
   m_ObjectHideFlags: 0
