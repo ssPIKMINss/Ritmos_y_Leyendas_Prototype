@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     public Animator anim;
+    public AudioSource fadeAudioSource; // <-- asigna aquí el Audio Source del FadePanel
+
     // Se llama desde el botón "Jugar"
     public void PlayGame()
     {
@@ -14,7 +16,13 @@ public class MenuController : MonoBehaviour
     private System.Collections.IEnumerator LoadGameWithDelay()
     {
         anim.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(0.5f); // Ajusta el delay si quieres
+
+        // --- Reproduce el sonido del fade ---
+        if (fadeAudioSource != null)
+            fadeAudioSource.Play();
+
+        yield return new WaitForSeconds(0.5f);
+
         SceneManager.LoadScene("Level_01");
     }
 
@@ -27,8 +35,12 @@ public class MenuController : MonoBehaviour
 
     private System.Collections.IEnumerator QuitWithDelay()
     {
+        // --- También puedes reproducir el mismo sonido al salir (opcional) ---
+        if (fadeAudioSource != null)
+            fadeAudioSource.Play();
+
         yield return new WaitForSeconds(0.5f);
+
         Application.Quit();
     }
 }
-
