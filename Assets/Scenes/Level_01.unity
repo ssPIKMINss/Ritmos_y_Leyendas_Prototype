@@ -22587,9 +22587,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1398597870882615282, guid: a6ff5cc173789ce45a3be82de12473d9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2518568659649976700, guid: a6ff5cc173789ce45a3be82de12473d9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5171611769515004636, guid: a6ff5cc173789ce45a3be82de12473d9, type: 3}
       propertyPath: m_Name
       value: Player_Pia
+      objectReference: {fileID: 0}
+    - target: {fileID: 5171611769515004636, guid: a6ff5cc173789ce45a3be82de12473d9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6882499501778342302, guid: a6ff5cc173789ce45a3be82de12473d9, type: 3}
       propertyPath: m_LocalScale.x
@@ -47926,6 +47938,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3112399295146155113, guid: 1f8c5468aaa5f8e45aa42d5134ac98c3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6017101917485604792, guid: 1f8c5468aaa5f8e45aa42d5134ac98c3, type: 3}
       propertyPath: m_Size.y
       value: 0.66847163
@@ -47938,7 +47954,10 @@ PrefabInstance:
     - {fileID: 5641552066199676696, guid: 1f8c5468aaa5f8e45aa42d5134ac98c3, type: 3}
     - {fileID: 4731516415952198356, guid: 1f8c5468aaa5f8e45aa42d5134ac98c3, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2097284592169988814, guid: 1f8c5468aaa5f8e45aa42d5134ac98c3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2052715261}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1612551177900071645, guid: 1f8c5468aaa5f8e45aa42d5134ac98c3, type: 3}
       insertIndex: -1
@@ -47963,13 +47982,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinionRhythm
   health: 1
   damageToPlayer: 1
-  moveSpeed: 3
-  attackRange: 1
-  attackPoint: {fileID: 0}
+  moveSpeed: 0.2
+  dashDistance: 3
+  dashSpeed: 2
+  returnSpeed: 2
+  attackRange: 0.1
+  attackPoint: {fileID: 2052715261}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   player: {fileID: 1571307747}
+  animator: {fileID: 1957161018}
+  deathTrigger: Death
+--- !u!95 &1957161018 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 386355323024664889, guid: 1f8c5468aaa5f8e45aa42d5134ac98c3, type: 3}
+  m_PrefabInstance: {fileID: 1957161013}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1957161020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2097284592169988814, guid: 1f8c5468aaa5f8e45aa42d5134ac98c3, type: 3}
+  m_PrefabInstance: {fileID: 1957161013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1977183708
 GameObject:
   m_ObjectHideFlags: 0
@@ -48196,6 +48230,37 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &2052715260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052715261}
+  m_Layer: 7
+  m_Name: attackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2052715261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052715260}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.13, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1957161020}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2123585573
 GameObject:
   m_ObjectHideFlags: 0
