@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 15da381df872f7148a497b77817bae84
+guid: d5e9bf0c9088e3a4e871c52dbf81457c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,111 +110,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_0
+      name: PIA_JUMP_FIX_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 150
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b8b33d942e51b948baca88beaf2ef21
-      internalID: 105695601
+      spriteID: 3b9dcd560e9dfac4781458847d6969cd
+      internalID: -938095029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_1
+      name: PIA_JUMP_FIX_1
       rect:
         serializedVersion: 2
         x: 150
         y: 0
         width: 150
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9408a0a64e4e14d4ea0ccf849c423f0e
-      internalID: 15762014
+      spriteID: 0a5c8503ed51b9a48955a76bc4b3660d
+      internalID: -154212310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_2
+      name: PIA_JUMP_FIX_2
       rect:
         serializedVersion: 2
         x: 300
         y: 0
         width: 150
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e362053af5345c14f8f5084f26436fd7
-      internalID: 697463872
+      spriteID: f0a02d8817a5e1f4591f361fe9f83f95
+      internalID: -270614899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_3
+      name: PIA_JUMP_FIX_3
       rect:
         serializedVersion: 2
         x: 450
         y: 0
         width: 150
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0a4a23e9aeb9c04db16dd8d526a4b36
-      internalID: 1668911122
+      spriteID: 65ff7a682e9e81a4bbfb73f5d936d49c
+      internalID: -1513264170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_4
+      name: PIA_JUMP_FIX_4
       rect:
         serializedVersion: 2
         x: 600
         y: 0
         width: 150
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3ad866dfd221b44e9cf2212efa24417
-      internalID: 1467205867
+      spriteID: 605739f0990cda54d94ab3ea71ac5f33
+      internalID: 583636585
       vertices: []
       indices: 
       edges: []
@@ -223,7 +223,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9440952e177979046b56932cfd75a44a
+    spriteID: 0fdfddc2cfee22d4484898f3615253d5
     internalID: 0
     vertices: []
     indices: 
@@ -233,13 +233,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":150.0,"y":150.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":4,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":150.0,"y":150.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      RUN_PIA-Sheet_0: 105695601
-      RUN_PIA-Sheet_1: 15762014
-      RUN_PIA-Sheet_2: 697463872
-      RUN_PIA-Sheet_3: 1668911122
-      RUN_PIA-Sheet_4: 1467205867
+      PIA_JUMP_FIX_0: -938095029
+      PIA_JUMP_FIX_1: -154212310
+      PIA_JUMP_FIX_2: -270614899
+      PIA_JUMP_FIX_3: -1513264170
+      PIA_JUMP_FIX_4: 583636585
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
