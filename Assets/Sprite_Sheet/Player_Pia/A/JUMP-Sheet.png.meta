@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 15da381df872f7148a497b77817bae84
+guid: 74c77146da5b2994cbc52bde7d009a93
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,111 +110,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_0
+      name: JUMP-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
+        width: 220
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b8b33d942e51b948baca88beaf2ef21
-      internalID: 105695601
+      spriteID: fbf045856629a8843b26454ccfdbf12d
+      internalID: -1698536442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_1
+      name: JUMP-Sheet_1
       rect:
         serializedVersion: 2
-        x: 150
+        x: 220
         y: 0
-        width: 150
+        width: 220
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9408a0a64e4e14d4ea0ccf849c423f0e
-      internalID: 15762014
+      spriteID: 357a8e2a7a1721840815c056645a6fb5
+      internalID: -1945768362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_2
+      name: JUMP-Sheet_2
       rect:
         serializedVersion: 2
-        x: 300
+        x: 440
         y: 0
-        width: 150
+        width: 220
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e362053af5345c14f8f5084f26436fd7
-      internalID: 697463872
+      spriteID: 5fc7c05739fcba942be8e8983ce0a6ee
+      internalID: 1200202347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_3
+      name: JUMP-Sheet_3
       rect:
         serializedVersion: 2
-        x: 450
+        x: 660
         y: 0
-        width: 150
+        width: 220
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0a4a23e9aeb9c04db16dd8d526a4b36
-      internalID: 1668911122
+      spriteID: e0c78e6adcf43dd4b817c69c2381c8d7
+      internalID: 254273942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RUN_PIA-Sheet_4
+      name: JUMP-Sheet_4
       rect:
         serializedVersion: 2
-        x: 600
+        x: 880
         y: 0
-        width: 150
+        width: 220
         height: 150
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3ad866dfd221b44e9cf2212efa24417
-      internalID: 1467205867
+      spriteID: 637b4bdbfdeb6db4aaf92655b250e4f2
+      internalID: 1609223344
       vertices: []
       indices: 
       edges: []
@@ -223,7 +223,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9440952e177979046b56932cfd75a44a
+    spriteID: 2c91db9596c030546b2dd1de41f480a4
     internalID: 0
     vertices: []
     indices: 
@@ -233,13 +233,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":150.0,"y":150.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":4,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":220.0,"y":150.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      RUN_PIA-Sheet_0: 105695601
-      RUN_PIA-Sheet_1: 15762014
-      RUN_PIA-Sheet_2: 697463872
-      RUN_PIA-Sheet_3: 1668911122
-      RUN_PIA-Sheet_4: 1467205867
+      JUMP-Sheet_0: -1698536442
+      JUMP-Sheet_1: -1945768362
+      JUMP-Sheet_2: 1200202347
+      JUMP-Sheet_3: 254273942
+      JUMP-Sheet_4: 1609223344
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
