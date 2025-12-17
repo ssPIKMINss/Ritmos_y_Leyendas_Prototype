@@ -1,74 +1,108 @@
 using UnityEngine;
-using System.Collections;
 
-public class Trauko : MonoBehaviour
+public class TraukoRhythm : MonoBehaviour
 {
-    [Header("Movimiento")]
-    public float jumpForce = 7f;
-    public float minIdleDelay = 4f; // Tiempo mínimo en idle
-    public float maxIdleDelay = 6f; // Tiempo máximo en idle
+    [Header("Salto por ritmo")]
+    [SerializeField] private int jumpEveryBeats = 4;     // 4 beats a 120bpm = 2s
+    [SerializeField] private float jumpForce = 7f;
 
-    [Header("Disparo")]
-    public GameObject proyectilPrefab;
-    public Transform firePoint;
+    [Header("Ground Check")]
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius = 0.15f;
 
-    [Header("Animación")]
-    public Animator animator;
+    [Header("Disparo (1 por salto)")]
+    [SerializeField] private GameObject proyectilPrefab;
+    [SerializeField] private Transform firePoint;
+
+    [Header("Animación (opcional)")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private string jumpTrigger = "Jump";
+    [SerializeField] private string landTrigger = "Land";
+    [SerializeField] private string groundedBool = "isGrounded";
 
     private Rigidbody2D rb;
-    private bool isGrounded = true;
-    private bool hasAttacked = false;
-    private bool waitingToJump = false;
+    private bool isGrounded;
+    private int beatCounter = 0;
+    private bool hasShotThisJump = false;
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (!animator) animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void OnEnable()
     {
-        animator.SetBool("isGrounded", isGrounded);
+        BeatManager.OnBeat += OnBeat;
     }
 
-    void Salta()
+    private void OnDisable()
     {
+        BeatManager.OnBeat -= OnBeat;
+    }
+
+    private void Update()
+    {
+        // Ground check estable
+        if (groundCheck != null)
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (animator != null && !string.IsNullOrEmpty(groundedBool))
+            animator.SetBool(groundedBool, isGrounded);
+    }
+
+    private void OnBeat()
+    {
+        beatCounter++;
+
+        if (jumpEveryBeats <= 0) jumpEveryBeats = 1;
+
+        // Solo actúa en el beat que corresponde
+        if (beatCounter % jumpEveryBeats != 0) return;
+
+        // Si no está en el suelo, no salta (espera al próximo beat)
+        if (!isGrounded) return;
+
+        JumpAndShoot();
+    }
+
+    private void JumpAndShoot()
+    {
+        hasShotThisJump = false;
+
+        // SALTO
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        isGrounded = false;
-        hasAttacked = false;
-        animator.SetTrigger("Jump");
+
+        if (animator != null && !string.IsNullOrEmpty(jumpTrigger))
+            animator.SetTrigger(jumpTrigger);
+
+        // DISPARO 1 VEZ POR SALTO (instantáneo)
+        ShootOnce();
     }
 
-    public void LanzarProyectil()
+    private void ShootOnce()
     {
-        if (!hasAttacked)
+        if (hasShotThisJump) return;
+        if (proyectilPrefab == null || firePoint == null) return;
+
+        Instantiate(proyectilPrefab, firePoint.position, firePoint.rotation);
+        hasShotThisJump = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Si aterriza, dispara anim de land (opcional)
+        if (collision.contacts.Length > 0 && collision.contacts[0].normal.y > 0.5f)
         {
-            Instantiate(proyectilPrefab, firePoint.position, firePoint.rotation);
-            hasAttacked = true;
+            if (animator != null && !string.IsNullOrEmpty(landTrigger))
+                animator.SetTrigger(landTrigger);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnDrawGizmosSelected()
     {
-        if (!isGrounded && collision.contacts[0].normal.y > 0.5f)
-        {
-            isGrounded = true;
-            animator.SetTrigger("Land");
-
-            // Cuando aterriza, espera un tiempo antes de volver a saltar
-            if (!waitingToJump)
-                StartCoroutine(EsperarAntesDeSaltar());
-        }
-    }
-
-    private IEnumerator EsperarAntesDeSaltar()
-    {
-        waitingToJump = true;
-        float delay = Random.Range(minIdleDelay, maxIdleDelay);
-        yield return new WaitForSeconds(delay);
-
-        if (isGrounded)
-            Salta();
-
-        waitingToJump = false;
+        if (groundCheck == null) return;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 }
