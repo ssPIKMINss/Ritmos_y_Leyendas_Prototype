@@ -6,10 +6,14 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private bool destroyOnDeath = true;
 
-    [Header("Feedback (opcional)")]
-    [SerializeField] private Animator animator; // Trigger "Hit"/"Die" si lo usas
+    [Header("Animaciones")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private string hitTrigger = "Hit";
+    [SerializeField] private string deathTrigger = "Die";
+    [SerializeField] private float deathDelay = 0.8f; // duración animación muerte
 
     private int currentHealth;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -19,8 +23,13 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int amount = 1)
     {
+        if (isDead) return;
+
         currentHealth -= amount;
-        if (animator) animator.SetTrigger("Hit");
+
+        // 🔥 Animación de daño
+        if (animator && !string.IsNullOrEmpty(hitTrigger))
+            animator.SetTrigger(hitTrigger);
 
         if (currentHealth <= 0)
         {
@@ -30,19 +39,37 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
-        if (animator) animator.SetTrigger("Die");
-        // Aquí puedes desactivar colisiones, IA, etc.
-        var col = GetComponent<Collider2D>();
+        if (isDead) return;
+        isDead = true;
+
+        // ☠️ Animación de muerte
+        if (animator && !string.IsNullOrEmpty(deathTrigger))
+            animator.SetTrigger(deathTrigger);
+
+        // Desactivar colisiones
+        Collider2D col = GetComponent<Collider2D>();
         if (col) col.enabled = false;
+
+        // Desactivar otros scripts (IA, movimiento, ataque)
+        MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
+        foreach (var s in scripts)
+        {
+            if (s != this)
+                s.enabled = false;
+        }
 
         if (destroyOnDeath)
         {
-            // pequeño delay si quieres que se vea la animación
-            Destroy(gameObject, 0.25f);
+            Destroy(gameObject, deathDelay);
         }
         else
         {
-            gameObject.SetActive(false);
+            Invoke(nameof(DisableObject), deathDelay);
         }
+    }
+
+    private void DisableObject()
+    {
+        gameObject.SetActive(false);
     }
 }
