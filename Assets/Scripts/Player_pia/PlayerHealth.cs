@@ -5,13 +5,17 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("Vida del jugador")]
     [SerializeField] private int maxHealth = 3;
+    [SerializeField] private float restartDelay = 0.9f; // tiempo para ver la anim de muerte
     private int currentHealth;
     private bool isDead;
 
-    [Header("Animación (opcional)")]
+    [Header("Animación")]
     [SerializeField] private Animator animator;
     [SerializeField] private string deathTriggerName = "Death";
     [SerializeField] private string hitTriggerName = "Hit";
+
+    [Header("Opcional: scripts a desactivar al morir")]
+    [SerializeField] private MonoBehaviour[] disableOnDeath; // arrastra PlayerMovement, PlayerAttack, etc.
 
     private void Start()
     {
@@ -25,23 +29,46 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= amount;
 
+        // 🔥 Hit anim
         TrySetTrigger(hitTriggerName);
 
         if (currentHealth <= 0)
             Die();
     }
 
-    private void Die()
+    public void Die()
     {
         if (isDead) return;
         isDead = true;
 
+        // ☠️ Death anim
         TrySetTrigger(deathTriggerName);
 
+        // Desactivar scripts (movimiento, ataque, etc.)
+        if (disableOnDeath != null && disableOnDeath.Length > 0)
+        {
+            foreach (var s in disableOnDeath)
+                if (s != null) s.enabled = false;
+        }
+
+        // Congelar físicas para que no se caiga
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+        }
+
+        // Reinicio con fade si existe, si no, reinicia con delay
         if (FadeController.Instance != null)
+        {
+            // Si tu FadeController reinicia al terminar el fade, perfecto.
             FadeController.Instance.FadeOutAndRestart();
+        }
         else
-            Invoke(nameof(RestartLevel), 1f);
+        {
+            Invoke(nameof(RestartLevel), restartDelay);
+        }
     }
 
     private void RestartLevel()
