@@ -3,34 +3,43 @@ using System;
 
 public class BeatManager : MonoBehaviour
 {
+    public static BeatManager Instance { get; private set; }
     public static event Action OnBeat;
 
     [Header("Music")]
-    public AudioSource music;       // 🎵 Arrastra aquí tu música
+    public AudioSource music;
 
     [Header("BPM Setup")]
-    public float bpm = 120f;        // 💥 Cambia según el tempo de tu canción
+    public float bpm = 120f;
 
     private float secPerBeat;
     private double dspSongStart;
     private double nextBeatTime;
 
+    private void Awake()
+    {
+        // ✅ Solo 1 BeatManager en toda la escena/juego
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     void Start()
     {
         if (music == null)
         {
-            Debug.LogError("BeatManager → No hay AudioSource asignado ❗");
+            Debug.LogError("BeatManager → No hay AudioSource asignado");
             return;
         }
 
-        // cuántos segundos dura un beat
         secPerBeat = 60f / bpm;
 
-        // sincroniza el audio con el reloj DSP (0.05 para evitar cortes)
         dspSongStart = AudioSettings.dspTime + 0.05;
         music.PlayScheduled(dspSongStart);
 
-        // programa el primer beat
         nextBeatTime = dspSongStart + secPerBeat;
     }
 
@@ -38,13 +47,10 @@ public class BeatManager : MonoBehaviour
     {
         if (music == null) return;
 
-        // si ya se alcanzó el tiempo del próximo beat
         while (AudioSettings.dspTime >= nextBeatTime)
         {
-            OnBeat?.Invoke();         // 🔔 señal global para minions, partículas, luces, etc.
-
-            nextBeatTime += secPerBeat;  // programa siguiente beat
+            OnBeat?.Invoke();
+            nextBeatTime += secPerBeat;
         }
     }
 }
-
