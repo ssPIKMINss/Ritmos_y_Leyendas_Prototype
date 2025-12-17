@@ -1,19 +1,21 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class EnemyHealth : MonoBehaviour
+public class TraukoBossHealth : MonoBehaviour
 {
-    [Header("Salud")]
-    [SerializeField] private int maxHealth = 3;
-    [SerializeField] private bool destroyOnDeath = true;
-
-    [Header("Animaciones")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private string hitTrigger = "Hit";
-    [SerializeField] private string deathTrigger = "Die";
-    [SerializeField] private float deathDelay = 0.8f; // duración animación muerte
-
+    [Header("Vida del Boss")]
+    [SerializeField] private int maxHealth = 10;
     private int currentHealth;
     private bool isDead = false;
+
+    [Header("Animación")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private string hitTrigger = "Hit";
+    [SerializeField] private string deathTrigger = "Death";
+
+    [Header("Cambio de escena")]
+    [SerializeField] private string nextSceneName;
+    [SerializeField] private float delayBeforeSceneChange = 2f;
 
     private void Awake()
     {
@@ -21,20 +23,17 @@ public class EnemyHealth : MonoBehaviour
         if (!animator) animator = GetComponent<Animator>();
     }
 
-    public void TakeDamage(int amount = 1)
+    public void TakeDamage(int amount)
     {
         if (isDead) return;
 
         currentHealth -= amount;
 
-        // 🔥 Animación de daño
         if (animator && !string.IsNullOrEmpty(hitTrigger))
             animator.SetTrigger(hitTrigger);
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     private void Die()
@@ -42,15 +41,15 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        // ☠️ Animación de muerte
+        // Animación de muerte
         if (animator && !string.IsNullOrEmpty(deathTrigger))
             animator.SetTrigger(deathTrigger);
 
-        // Desactivar colisiones
+        // Desactiva colisiones
         Collider2D col = GetComponent<Collider2D>();
         if (col) col.enabled = false;
 
-        // Desactivar otros scripts (IA, movimiento, ataque)
+        // Desactiva IA / ritmo / ataques
         MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
         foreach (var s in scripts)
         {
@@ -58,18 +57,15 @@ public class EnemyHealth : MonoBehaviour
                 s.enabled = false;
         }
 
-        if (destroyOnDeath)
-        {
-            Destroy(gameObject, deathDelay);
-        }
-        else
-        {
-            Invoke(nameof(DisableObject), deathDelay);
-        }
+        // Cambio de escena tras delay
+        Invoke(nameof(LoadNextScene), delayBeforeSceneChange);
     }
 
-    private void DisableObject()
+    private void LoadNextScene()
     {
-        gameObject.SetActive(false);
+        if (!string.IsNullOrEmpty(nextSceneName))
+            SceneManager.LoadScene(nextSceneName);
+        else
+            Debug.LogError("TraukoBossHealth → No se asignó la escena destino");
     }
 }

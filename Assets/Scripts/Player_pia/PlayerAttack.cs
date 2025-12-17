@@ -14,53 +14,56 @@ public class PlayerAttack : MonoBehaviour
 
     private float nextAttackTime = 0f;
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0) && Time.time >= nextAttackTime)
         {
-            Attack();
+            DoAttack();
             nextAttackTime = Time.time + attackCooldown;
         }
     }
 
-    void Attack()
+    private void DoAttack()
     {
-        if (animator != null)
-            animator.SetTrigger("AttackTrigger");
+        if (animator != null) animator.SetTrigger("AttackTrigger");
 
         if (attackPoint == null)
         {
-            Debug.LogWarning("AttackPoint no asignado");
+            Debug.LogWarning("AttackPoint no asignado.");
             return;
         }
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            attackPoint.position,
-            attackRange,
-            enemyLayer
-        );
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
-        foreach (Collider2D hit in hits)
+        foreach (Collider2D h in hits)
         {
-            // Enemy normal
-            EnemyHealth enemy = hit.GetComponentInParent<EnemyHealth>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-                continue;
-            }
-
-            // Enemy Minion
-            EnemyHealth_Minion minion = hit.GetComponentInParent<EnemyHealth_Minion>();
+            // Minion normal
+            var minion = h.GetComponentInParent<EnemyHealth_Minion>();
             if (minion != null)
             {
                 minion.TakeDamage(damage);
                 continue;
             }
+
+            // Minion rítmico
+            var rhythm = h.GetComponentInParent<MinionRhythm>();
+            if (rhythm != null)
+            {
+                rhythm.TakeDamage(damage);
+                continue;
+            }
+
+            // Boss Trauko
+            var boss = h.GetComponentInParent<TraukoBossHealth>();
+            if (boss != null)
+            {
+                boss.TakeDamage(damage);
+                continue;
+            }
         }
     }
 
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
         Gizmos.color = Color.red;
